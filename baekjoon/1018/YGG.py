@@ -1,17 +1,15 @@
 def paint_area(m: int, n: int, arr) -> int:
     count = 0
-    start = 0 + 0
     char = arr[0][0]
     for i in range(8):
         for j in range(8):
-            if ((i + j) % 2 == start % 2) ^ (arr[i][j] == char):
+            if ((i + j) % 2 == 0) ^ (arr[i][j] == char):
                 count += 1
     prev_val = count
     ans = min(count, 64 - count)
 
     for y in range(0, len(arr) - 8):
         # (0~n-8, 0~7) -> (8~n-1, 0~7)
-        start = y + 0
         for x in range(8):
             if ((y + x) % 2 == 0) ^ (arr[y][x] == char):
                 count -= 1
@@ -22,7 +20,6 @@ def paint_area(m: int, n: int, arr) -> int:
     for j in range(0, len(arr[0]) - 8):
         count = prev_val
         # (0~7, j-8) -> (0~7, j)
-        start = 0 + j+1
         for y in range(8):
             if ((y + j) % 2 == 0) ^ (arr[y][j] == char):
                 count -= 1
@@ -33,7 +30,6 @@ def paint_area(m: int, n: int, arr) -> int:
 
         j += 1
         for y in range(0, len(arr) - 8):
-            start = y + j
             # (0~n-8, j~j+7) -> (8~n-1, j~j+7)
             for x in range(8):
                 if ((y + j+x) % 2 == 0) ^ (arr[y][j+x] == char):
@@ -46,8 +42,8 @@ def paint_area(m: int, n: int, arr) -> int:
 
 
 a, b = map(int, input().split())
-arr = []
+c = []
 for k in range(a):
-    arr.append(input())
+    c.append(input())
 
-print(paint_area(a, b, arr))
+print(paint_area(a, b, c))
