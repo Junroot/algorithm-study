@@ -1,7 +1,6 @@
 class Solution:
     def minWindow(self, s: str, t: str) -> str:
         remain = len(t)
-        overcounted = 0
         t_counter = collections.Counter(t)
         
         res = ''
