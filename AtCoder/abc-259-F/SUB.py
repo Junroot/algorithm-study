@@ -1,4 +1,6 @@
+import sys
 import math
+sys.setrecursionlimit(10 ** 6)
 
 n = int(input())
 max_choice = list(map(int, input().split()))
@@ -9,8 +11,8 @@ dp = [[0 for _ in range(2)] for _ in range(300001)]
 
 for i in range(n-1):
     start, end, w = map(int, input().split())
-    arr[start].append([end, w])
-    arr[end]. append([start, w])
+    arr[start].append((end, w))
+    arr[end]. append((start, w))
 
 
 def dfs(cur, parent):
@@ -40,4 +42,3 @@ def dfs(cur, parent):
 
 dfs(1, -1)
 print(dp[1][1])
-
